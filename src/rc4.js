@@ -7,6 +7,12 @@ function RC4(key) {
   this.version = version;
 }
 
+
+/**
+ * Converts the text into an array of the characters numeric Unicode values
+ * @param  {String} text, the text to convert
+ * @return {Array} the array of Unicode values
+ */
 function convert(text) {
   var codes = [];
 
@@ -17,6 +23,11 @@ function convert(text) {
   return codes;
 }
 
+/**
+ * Sets up the key to use with the byte stream
+ * @param  {String} key, The key that you want to use
+ * @return {Array}, the key stream which with be used in the byteStreamGenerator
+ */
 function keySetup(key) {
 
   var K = [...Array(256).keys()],
@@ -32,6 +43,12 @@ function keySetup(key) {
 
 }
 
+
+/**
+ * byteStreamGenerator uses ES6 generators which will be 'XOR-ed' to encrypt and decrypt
+ * @param {Array} K, the array generated from the keySetup
+ * @yield {Integer}, the current value which will be 'XOR-ed' to encrypt or decrypt
+ */
 var byteStreamGenerator = function *(K) {
   var i = 0,
     j = 0;
@@ -44,6 +61,11 @@ var byteStreamGenerator = function *(K) {
   }
 }
 
+/**
+ * Encrypts the input text
+ * @param  {String} input, the text to encrypt
+ * @return {String}, the encrypted text
+ */
 RC4.prototype.encrypt = function(input) {
 
   var outputText = '',
@@ -56,6 +78,11 @@ RC4.prototype.encrypt = function(input) {
   return outputText;
 }
 
+/**
+ * Decrypts the input text
+ * @param  {String} input, the text to decrypt
+ * @return {String}, the decrypted text (if the same key was used)
+ */
 RC4.prototype.decrypt = function(input) {
   var outputText = '',
     byteStream = byteStreamGenerator(privateKey.slice(0));

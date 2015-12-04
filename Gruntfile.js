@@ -23,17 +23,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Catches the comments that grunt-contrib-concat doesn't
-    stripComments: {
-      options: {
-        'type': 'all'
-      },
-      main: {
-        src: 'dist/rc4.js',
-        dest: 'dist/rc4.js'
-      }
-    },
-
     writeVersion: {
       versionJSON: {
         srcFile: JSON.stringify(version),
@@ -85,10 +74,20 @@ module.exports = function(grunt) {
       }
     },
 
+    comments: {
+      dist: {
+        options: {
+            singleline: true,
+            multiline: true
+        },
+        src: [ 'dist/*.js']
+      },
+    },
+
     watch: {
       js: {
         files: 'src/**/*.js',
-        tasks: ['eslint', 'browserify', 'stripComments']
+        tasks: ['eslint', 'browserify', 'comments']
       }
     }
 
@@ -99,9 +98,9 @@ module.exports = function(grunt) {
     .filterDev('grunt-*')
     .forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['clean', 'writeVersion', 'copy', 'eslint', 'browserify', 'stripComments', 'watch']);
+  grunt.registerTask('default', ['clean', 'writeVersion', 'copy', 'eslint', 'browserify', 'comments', 'watch']);
 
-  grunt.registerTask('build', ['clean', 'writeVersion', 'copy', 'eslint', 'browserify', 'stripComments', 'uglify', 'mochaTest']);
+  grunt.registerTask('build', ['clean', 'writeVersion', 'copy', 'eslint', 'browserify', 'comments', 'uglify', 'mochaTest']);
 
 
 

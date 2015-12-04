@@ -1,6 +1,5 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.RC4 = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
-
 var process = module.exports = {};
 var queue = [];
 var draining = false;
@@ -55,8 +54,6 @@ process.nextTick = function (fun) {
         setTimeout(drainQueue, 0);
     }
 };
-
-
 function Item(fun, array) {
     this.fun = fun;
     this.array = array;
@@ -68,7 +65,7 @@ process.title = 'browser';
 process.browser = true;
 process.env = {};
 process.argv = [];
-process.version = ''; 
+process.version = ''; // empty string to avoid regexp issues
 process.versions = {};
 
 function noop() {}
@@ -104,7 +101,6 @@ function RC4(key) {
   privateKey = keySetup(key);
   this.version = version;
 }
-
 function convert(text) {
   var codes = [];
 
@@ -114,7 +110,6 @@ function convert(text) {
 
   return codes;
 }
-
 function keySetup(key) {
 
   var K = [].concat(_toConsumableArray(Array(256).keys())),
@@ -130,7 +125,6 @@ function keySetup(key) {
 
   return K;
 }
-
 var byteStreamGenerator = regeneratorRuntime.mark(function byteStreamGenerator(K) {
   var i, j, _ref2;
 
@@ -165,7 +159,6 @@ var byteStreamGenerator = regeneratorRuntime.mark(function byteStreamGenerator(K
     }
   }, byteStreamGenerator, this);
 });
-
 RC4.prototype.encrypt = function (input) {
 
   var outputText = '',
@@ -177,7 +170,6 @@ RC4.prototype.encrypt = function (input) {
 
   return outputText;
 };
-
 RC4.prototype.decrypt = function (input) {
   var outputText = '',
       byteStream = byteStreamGenerator(privateKey.slice(0));
@@ -199,63 +191,31 @@ module.exports = RC4;
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
-/**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * https:
- * additional grant of patent rights can be found in the PATENTS file in
- * the same directory.
- */
-
 !(function (global) {
   "use strict";
 
   var hasOwn = Object.prototype.hasOwnProperty;
-  var undefined; 
+  var undefined; // More compressible than void 0.
   var iteratorSymbol = typeof Symbol === "function" && Symbol.iterator || "@@iterator";
 
   var inModule = (typeof module === "undefined" ? "undefined" : _typeof(module)) === "object";
   var runtime = global.regeneratorRuntime;
   if (runtime) {
     if (inModule) {
-      
-      
       module.exports = runtime;
     }
-    
-    
     return;
   }
-
-  
-  
   runtime = global.regeneratorRuntime = inModule ? module.exports : {};
 
   function wrap(innerFn, outerFn, self, tryLocsList) {
-    
     var generator = Object.create((outerFn || Generator).prototype);
     var context = new Context(tryLocsList || []);
-
-    
-    
     generator._invoke = makeInvokeMethod(innerFn, self, context);
 
     return generator;
   }
   runtime.wrap = wrap;
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   function tryCatch(fn, obj, arg) {
     try {
       return { type: "normal", arg: fn.call(obj, arg) };
@@ -268,15 +228,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   var GenStateSuspendedYield = "suspendedYield";
   var GenStateExecuting = "executing";
   var GenStateCompleted = "completed";
-
-  
-  
   var ContinueSentinel = {};
-
-  
-  
-  
-  
   function Generator() {}
   function GeneratorFunction() {}
   function GeneratorFunctionPrototype() {}
@@ -285,9 +237,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
   GeneratorFunction.displayName = "GeneratorFunction";
-
-  
-  
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function (method) {
       prototype[method] = function (arg) {
@@ -299,8 +248,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   runtime.isGeneratorFunction = function (genFun) {
     var ctor = typeof genFun === "function" && genFun.constructor;
     return ctor ? ctor === GeneratorFunction ||
-    
-    
     (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
   };
 
@@ -313,12 +260,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
     genFun.prototype = Object.create(Gp);
     return genFun;
   };
-
-  
-  
-  
-  
-  
   runtime.awrap = function (arg) {
     return new AwaitArgument(arg);
   };
@@ -328,27 +269,10 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   }
 
   function AsyncIterator(generator) {
-    
-    
     function invoke(method, arg) {
       var result = generator[method](arg);
       var value = result.value;
       return value instanceof AwaitArgument ? Promise.resolve(value.arg).then(invokeNext, invokeThrow) : Promise.resolve(value).then(function (unwrapped) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         result.value = unwrapped;
         return result;
       });
@@ -369,40 +293,19 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
       }
 
       return previousPromise =
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       previousPromise ? previousPromise.then(callInvokeWithMethodAndArg,
-      
-      
       callInvokeWithMethodAndArg) : new Promise(function (resolve) {
         resolve(callInvokeWithMethodAndArg());
       });
     }
-
-    
-    
     this._invoke = enqueue;
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-
-  
-  
-  
   runtime.async = function (innerFn, outerFn, self, tryLocsList) {
     var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
 
-    return runtime.isGeneratorFunction(outerFn) ? iter 
+    return runtime.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
     : iter.next().then(function (result) {
       return result.done ? result.value : iter.next();
     });
@@ -420,9 +323,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
         if (method === "throw") {
           throw arg;
         }
-
-        
-        
         return doneResult();
       }
 
@@ -430,18 +330,11 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
         var delegate = context.delegate;
         if (delegate) {
           if (method === "return" || method === "throw" && delegate.iterator[method] === undefined) {
-            
-            
             context.delegate = null;
-
-            
-            
             var returnMethod = delegate.iterator["return"];
             if (returnMethod) {
               var record = tryCatch(returnMethod, delegate.iterator, arg);
               if (record.type === "throw") {
-                
-                
                 method = "throw";
                 arg = record.arg;
                 continue;
@@ -449,8 +342,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
             }
 
             if (method === "return") {
-              
-              
               continue;
             }
           }
@@ -459,17 +350,10 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
           if (record.type === "throw") {
             context.delegate = null;
-
-            
-            
             method = "throw";
             arg = record.arg;
             continue;
           }
-
-          
-          
-          
           method = "next";
           arg = undefined;
 
@@ -500,8 +384,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
           }
 
           if (context.dispatchException(arg)) {
-            
-            
             method = "next";
             arg = undefined;
           }
@@ -513,8 +395,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
         var record = tryCatch(innerFn, self, context);
         if (record.type === "normal") {
-          
-          
           state = context.done ? GenStateCompleted : GenStateSuspendedYield;
 
           var info = {
@@ -524,8 +404,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
           if (record.arg === ContinueSentinel) {
             if (context.delegate && method === "next") {
-              
-              
               arg = undefined;
             }
           } else {
@@ -533,17 +411,12 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
           }
         } else if (record.type === "throw") {
           state = GenStateCompleted;
-          
-          
           method = "throw";
           arg = record.arg;
         }
       }
     };
   }
-
-  
-  
   defineIteratorMethods(Gp);
 
   Gp[iteratorSymbol] = function () {
@@ -577,9 +450,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   }
 
   function Context(tryLocsList) {
-    
-    
-    
     this.tryEntries = [{ tryLoc: "root" }];
     tryLocsList.forEach(pushTryEntry, this);
     this.reset(true);
@@ -591,9 +461,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
       keys.push(key);
     }
     keys.reverse();
-
-    
-    
     return function next() {
       while (keys.length) {
         var key = keys.pop();
@@ -603,10 +470,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
           return next;
         }
       }
-
-      
-      
-      
       next.done = true;
       return next;
     };
@@ -643,8 +506,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
         return next.next = next;
       }
     }
-
-    
     return { next: doneResult };
   }
   runtime.values = values;
@@ -667,7 +528,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
       if (!skipTempReset) {
         for (var name in this) {
-          
           if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
             this[name] = undefined;
           }
@@ -705,9 +565,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
         var record = entry.completion;
 
         if (entry.tryLoc === "root") {
-          
-          
-          
           return handle("end");
         }
 
@@ -746,8 +603,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
       }
 
       if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
-        
-        
         finallyEntry = null;
       }
 
@@ -802,9 +657,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
           return thrown;
         }
       }
-
-      
-      
       throw new Error("illegal catch attempt");
     },
 
@@ -819,16 +671,13 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
     }
   };
 })(
-
-
-
 (typeof global === "undefined" ? "undefined" : _typeof(global)) === "object" ? global : (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" ? window : (typeof self === "undefined" ? "undefined" : _typeof(self)) === "object" ? self : undefined);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],4:[function(require,module,exports){
 "use strict";
 
-var version = { "full": "1.0.0", "major": "1", "minor": "0", "dot": "0", "author": "danjford <github.com/danjford>" };
+var version = { "full": "1.1.0", "major": "1", "minor": "1", "dot": "0", "author": "danjford <github.com/danjford>" };
 
 },{}]},{},[2])(2)
 });
