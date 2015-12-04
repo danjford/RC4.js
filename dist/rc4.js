@@ -677,7 +677,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 },{"_process":1}],4:[function(require,module,exports){
 "use strict";
 
-var version = { "full": "1.1.0", "major": "1", "minor": "1", "dot": "0", "author": "danjford <github.com/danjford>" };
+module.exports = { "full": "1.2.0", "major": "1", "minor": "2", "dot": "0", "author": "danjford <github.com/danjford>" };
 
 },{}]},{},[2])(2)
 });

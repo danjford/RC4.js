@@ -1,6 +1,6 @@
 {
   "name": "rc4.js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Creating RC4 in JavaScript",
   "main": "dist/rc4.min.js",
   "author": "danjford <github.com/danjford>",
