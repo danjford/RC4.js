@@ -16,9 +16,9 @@ var test = new RC4('This is my secret key');
 You then have the option to encrypt or decrypt text by using the following public functions:
 
 ```
-    test.decrypt(/* Text to decrypt to go here */);
-    // OR
-    test.encrypt(/* Text to encrypt to go here */);
+test.decrypt(/* Text to decrypt to go here */);
+// OR
+test.encrypt(/* Text to encrypt to go here */);
 ```
 
 ### Tests and Linting
