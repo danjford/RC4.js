@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/danjford/RC4.js.svg?branch=master)](https://travis-ci.org/danjford/RC4.js)
 RC4 in JavaScript
 ==
 
