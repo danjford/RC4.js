@@ -5,6 +5,9 @@
   "main": "dist/rc4.min.js",
   "author": "danjford <github.com/danjford>",
   "license": "ISC",
+  "scripts": {
+    "test": "mocha test"
+  },
   "devDependencies": {
     "babel-polyfill": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
