@@ -5,7 +5,7 @@ RC4 in JavaScript
 
 ### Background
 
-Previously I had written the RC4 algorithm in Python. This was an experiment for fun to see how that would look translated into JavaScript using features from ES6 with Babel.js, due to alot of the features not yet being available. Without all of the Babel code this code came in at 72 lines (have a look in src/rc4.js).
+Previously I had written the RC4 algorithm in Python. This was an experiment for fun to see how that would look translated into JavaScript using features from ES6 with Babel.js, due to alot of the features not yet being available. Without all of the Babel code this code came in at 72 lines (have a look in src/rc4.js) without comments.
 
 ### Using rc4.js
 
